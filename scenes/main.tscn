@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://aether_main"]
+
+[ext_resource type="Script" path="res://scripts/systems/spawner.gd" id="1_spawn"]
+[ext_resource type="Script" path="res://scripts/systems/environment.gd" id="2_env"]
+[ext_resource type="Script" path="res://scripts/ui/hud.gd" id="3_hud"]
+[ext_resource type="Script" path="res://scripts/ui/agent_inspector.gd" id="4_inspector"]
+[ext_resource type="Script" path="res://scripts/ui/controls_panel.gd" id="5_controls"]
+
+[sub_resource type="Environment" id="Environment_res"]
+background_color = Color(0.15, 0.2, 0.3, 1)
+background_mode = 0
+ambient_light_color = Color(0.3, 0.35, 0.45, 1)
+
+[node name="Aether" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_res")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+rotation = Vector3(-0.8, 0.4, 0)
+
+[node name="HUD" type="CanvasLayer" parent="."]
+script = ExtResource("3_hud")
+
+[node name="AgentInspector" type="CanvasLayer" parent="."]
+script = ExtResource("4_inspector")
+
+[node name="ControlsPanel" type="CanvasLayer" parent="."]
+script = ExtResource("5_controls")
+
+[node name="Spawner" type="Node" parent="."]
+script = ExtResource("1_spawn")
+
+[node name="EnvironmentSystem" type="Node" parent="."]
+script = ExtResource("2_env")
